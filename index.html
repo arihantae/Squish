@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="Compress JPG, PNG, and WebP images instantly in your browser. Fast and private — nothing is ever uploaded." />
+  <title>Squish — Compress images in your browser</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Squish</span>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Compress your images.</h1>
+      <p class="hero-sub">Drag in JPG, PNG, or WebP files to shrink them right here in your browser. Nothing is uploaded anywhere.</p>
+    </section>
+
+    <section class="dropzone" id="dropzone">
+      <input type="file" id="file-input" accept="image/jpeg,image/png,image/webp" multiple hidden />
+      <div class="dropzone-content">
+        <svg class="dropzone-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+          <circle cx="8.5" cy="8.5" r="1.5"></circle>
+          <path d="M21 15l-5-5L5 21"></path>
+        </svg>
+        <p class="dropzone-title">Drag &amp; drop images here</p>
+        <p class="dropzone-or">or</p>
+        <button type="button" class="btn btn-primary" id="browse-btn">Browse files</button>
+        <p class="dropzone-hint">Supports JPG, PNG, WebP &middot; up to 50 MB each</p>
+      </div>
+    </section>
+
+    <section class="workspace" id="workspace" hidden>
+      <div class="toolbar">
+        <p class="image-count" id="image-count">0 images</p>
+        <div class="toolbar-actions">
+          <button type="button" class="btn btn-ghost" id="add-more-btn">Add more</button>
+          <button type="button" class="btn btn-ghost btn-danger-hover" id="clear-all-btn">Clear all</button>
+          <button type="button" class="btn btn-primary" id="download-all-btn" disabled>Download all (.zip)</button>
+        </div>
+      </div>
+      <div class="settings-bar">
+        <div class="settings-controls">
+          <div class="quality-control">
+            <label for="quality-slider">Quality</label>
+            <input type="range" id="quality-slider" min="10" max="100" value="75" />
+            <span class="quality-value" id="quality-value">75%</span>
+          </div>
+          <div class="resize-control">
+            <label for="resize-select">Max size</label>
+            <select id="resize-select">
+              <option value="0">Original</option>
+              <option value="2560">2560px</option>
+              <option value="1920">1920px</option>
+              <option value="1280">1280px</option>
+              <option value="800">800px</option>
+            </select>
+          </div>
+        </div>
+        <p class="summary" id="summary"></p>
+      </div>
+      <div class="image-grid" id="image-grid"></div>
+    </section>
+  </main>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <footer class="site-footer">
+    <p>Runs entirely in your browser &mdash; images are never uploaded.</p>
+  </footer>
+
+  <script src="vendor/jszip.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
